@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) NSDictionary *keyMapping;
 
-@property (nonatomic, strong) NSMutableDictionary *metadatas;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, AVMetadataItem *> *metadatas;
 
 @end
 
@@ -41,6 +41,9 @@
 {    
     NSString *normalizedKey = self.keyMapping[item.commonKey] ? : self.keyMapping[item.keyString];
     
+    
+    //commonKey --> title
+    //artist
     if (normalizedKey) {
         
         // 获取指定类型控制器

@@ -332,10 +332,10 @@
 			isa = PBXGroup;
 			children = (
 				BC857D321FDE2CEF00E9D1E7 /* MYDefaultMetadataConverter.h */,
-				BC857D331FDE2CEF00E9D1E7 /* MYMetadataConverterFactory.m */,
 				BC857D341FDE2CEF00E9D1E7 /* MYDefaultMetadataConverter.m */,
 				BC857D351FDE2CEF00E9D1E7 /* MYMetadataConverter.h */,
 				BC857D361FDE2CEF00E9D1E7 /* MYMetadataConverterFactory.h */,
+				BC857D331FDE2CEF00E9D1E7 /* MYMetadataConverterFactory.m */,
 			);
 			path = Converters;
 			sourceTree = "<group>";

@@ -14,15 +14,10 @@
 @property (nonatomic, copy) NSString *name;
 
 + (NSArray *)audioGenres;
-
 + (NSArray *)videoGenres;
-
 + (MYGenre *)id3GenreWithIndex:(NSUInteger)index;
-
 + (MYGenre *)id3GenreWithName:(NSString *)name;
-
 + (MYGenre *)iTunesGenreWithIndex:(NSUInteger)index;
-
 + (MYGenre *)videoGenreWithName:(NSString *)name;
 
 @end

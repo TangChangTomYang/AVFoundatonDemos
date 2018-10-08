@@ -42,12 +42,21 @@
         }
     }
     
+    [_asset metadata];
+    
+    
     [_asset loadValuesAsynchronouslyForKeys:@[@"availableMetadataFormats"] completionHandler:^{
         
         AVKeyValueStatus status = [_asset statusOfValueForKey:@"availableMetadataFormats" error:nil];
         if (status == AVKeyValueStatusLoaded) {
             
+//            com.apple.itunes,
+//            org.mp4ra
+//            org.id3
+            
+            
             NSArray<AVMetadataFormat> *metadataFormats = _asset.availableMetadataFormats;
+
             for (AVMetadataFormat format in metadataFormats) {
                 
                 if ([@[AVMetadataFormatQuickTimeMetadata,
@@ -57,7 +66,6 @@
                     NSArray<AVMetadataItem *> *metadataItems = [self.asset metadataForFormat:format];
                     
                     _metadata = [[MYMetadata alloc] initWithItems:metadataItems];
-                    
                     break;
                 }
             }
@@ -121,4 +129,26 @@
 }
 
 
+
+-(void)test{
+    AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:_asset presetName:AVAssetExportPresetPassthrough];
+    exportSession.outputURL = [self tempURL];
+    exportSession.outputFileType = [self fileType];
+    exportSession.metadata = [self.metadata metadataItems];
+    
+    
+    __weak typeof(exportSession) weakExportSession = exportSession;
+    [exportSession exportAsynchronouslyWithCompletionHandler:^{
+        
+        if (weakExportSession.status == AVAssetExportSessionStatusCompleted) {
+            [[NSFileManager defaultManager] removeItemAtURL:_url error:nil];
+            [[NSFileManager defaultManager] moveItemAtURL:exportSession.outputURL toURL:_url error:nil];
+        }
+    }];
+}
+
+
+
 @end
+
+
